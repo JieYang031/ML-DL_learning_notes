@@ -57,7 +57,18 @@ Beta2: default = 0.99
 Sigma: default = 10e-8   
 
 #### Final Notes:
-There is another method we commonly used in GD (gradient descent) is called **Rprop**.  
+There is another method we commonly used in GD (gradient descent) is called **Rprop** or resilient backpropagation.  
 1. for full-batch optimization.
 2. RMSprop can be treated as the adaptation of Rprop for min-batch learning.
-3. 
+3. Rprop is fist-order optimization algorithm. It consider the sign of partial derivative.
+
+``` python
+for t in range(num_iterations):
+  dw[t] = compute_gradient(x, y)  
+  if dw[t] * dw[t-1] >0:
+    step_size = min(step_size * increasingFactor, step_size_max)
+  else if dw[t] * dw[t-1] <0:
+    step_size = man(step_size * decreasingFactor, step_size_min)
+  
+  w[t] = w[t] - sign(dw[t]) * step_size
+```
