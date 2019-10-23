@@ -2,6 +2,7 @@
 * Gradient descent with Momentum
 * RMSprop
 * Adam
+* Rprop
 
 Common used method for gradient descent (make it faster and fit for the **mini-batch** usage).
 
@@ -56,7 +57,7 @@ Beta1: default = 0.9
 Beta2: default = 0.99   
 Sigma: default = 10e-8   
 
-#### Final Notes:
+#### 4. Rprop
 There is another method we commonly used in GD (gradient descent) is called **Rprop** or resilient backpropagation.  
 1. for full-batch optimization.
 2. RMSprop can be treated as the adaptation of Rprop for min-batch learning.
