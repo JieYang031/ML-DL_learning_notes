@@ -30,33 +30,43 @@ Once all samples runned, one epoch is there. Some models applied thousand epoche
 
 input: batch or mini-batch, output: model with parameters  
 
-1. Input data normalization.   
-For image data, flatten data, normalize by number of pixels, and convert softmax labels if necessary.
+#### 1. Input data normalization.   
+For image data, flatten data, normalize by number of pixels, and convert softmax labels if necessary.  
 
-2. NN architecture.   
-Number of layers needed (can be tuned), number of units for each hidden layer (can be tuned), activation function for each layer (may need longer time to find the best combination).
-3. Initialize parameters.   
-Three initializations: zeros, randoms, He, Xavier. 
-Usually weights prefer He while the intercept (b) is fine with zeros. Make sure the variable dimension is correct. Weights: small, random, and variance controlled.
+#### 2. NN architecture.   
+* Number of layers needed (can be tuned)
+* number of units for each hidden layer (can be tuned)
+* activation function for each layer (may need longer time to find the best combination).
 
-4. Forward propagation.   
-Dropout needs to be applied here.   
-Batch norm should be applied here on z, before activation function: to reduce the effect of any changes of early layer to the next layer. 
+#### 3. Initialize parameters.   
+Three initializations: **zeros, randoms, He, Xavier**. 
+Usually weights prefer He while the intercept (b) is fine with zeros.   
+Make sure the variable dimension is correct.   
+Weights: small, random, and variance controlled.
 
-5. Compute cost.   
-Sometimes, combined with the forward propagation together. L2-regularization needs to be applied here, lambda which control the regularization needs to be tuned.
+#### 4. Forward propagation.   
+**Dropout** needs to be applied here.   
+**Batch norm** should be applied here on z, **before activation function**: to reduce the effect of any changes of early layer to the next layer. 
 
-6. Backward propagation. 
+#### 5. Compute cost.   
+Sometimes, combined with the forward propagation together. 
+* **L2-regularization** needs to be applied here, lambda which control the regularization needs to be tuned.
+
+#### 6. Backward propagation. 
 Dropout, L2 regularization, Early stopping need to be applied here. 
 
-7. Update parameters.   
+#### 7. Update parameters.   
 Learning rate need to be tuned, learning rate decay can be applied to avoid big steps in later phase.   
-**Optimization algorithm** can be applied here to improve the gradient descent process, including: momentum, RMSprop, and Adam. For each optimizer, need to initialize the optimization variables. Those variables also need to be updated along the layers. Can be initialized as zero.
+**Optimization algorithm** can be applied here to improve the gradient descent process, including: ***momentum, RMSprop, and Adam***.   
+For each optimizer, need to **initialize** the optimization variables. Those variables also need to be updated along the layers. Can be initialized as zero.
 
-8. Predict model
+#### 8. Predict model
 
 ### 4. With build model, error analysis.
 
-Determine which is the most significant problem needs to be solved: **bias or variance**.
-High bias: train longer, bigger network, new NN architecture (including activation function, # hidden units, and et al.)
-High variance: more data, NN architecture.
+Determine which is the most significant problem needs to be solved: **bias or variance**.  
+
+1. High bias (underfitting):   
+train longer, bigger network, new NN architecture (including activation function, # hidden units, and et al.)  
+2. High variance (overfitting):   
+more data, regularization, NN architecture.
